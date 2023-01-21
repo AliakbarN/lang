@@ -1,0 +1,543 @@
+{
+    "id": "cool",
+    "metadata": {
+        "operation": "translations",
+        "provider": "Oxford University Press",
+        "schema": "RetrieveTranslations"
+    },
+    "results": [
+        {
+            "id": "cool",
+            "language": "en",
+            "lexicalEntries": [
+                {
+                    "entries": [
+                        {
+                            "pronunciations": [
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_gb_1.mp3",
+                                    "dialects": [
+                                        "British English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kuːl"
+                                },
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_us_1.mp3",
+                                    "dialects": [
+                                        "American English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kul"
+                                }
+                            ],
+                            "senses": [
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.030"
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "text": "in the cool of the evening",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "в вече́рней прохла́де"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.002",
+                                    "translations": [
+                                        {
+                                            "language": "ru",
+                                            "text": "прохла́да"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.032"
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "registers": [
+                                                {
+                                                    "id": "informal",
+                                                    "text": "Informal"
+                                                }
+                                            ],
+                                            "text": "lose one's cool",
+                                            "translations": [
+                                                {
+                                                    "grammaticalFeatures": [
+                                                        {
+                                                            "id": "perfective",
+                                                            "text": "Perfective",
+                                                            "type": "Aspect"
+                                                        }
+                                                    ],
+                                                    "language": "ru",
+                                                    "text": "вы́йти из себя́"
+                                                },
+                                                {
+                                                    "grammaticalFeatures": [
+                                                        {
+                                                            "id": "perfective",
+                                                            "text": "Perfective",
+                                                            "type": "Aspect"
+                                                        }
+                                                    ],
+                                                    "language": "ru",
+                                                    "text": "потеря́ть самооблада́ние"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.003"
+                                }
+                            ]
+                        }
+                    ],
+                    "language": "en",
+                    "lexicalCategory": {
+                        "id": "noun",
+                        "text": "Noun"
+                    },
+                    "text": "cool"
+                },
+                {
+                    "entries": [
+                        {
+                            "pronunciations": [
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_gb_1.mp3",
+                                    "dialects": [
+                                        "British English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kuːl"
+                                },
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_us_1.mp3",
+                                    "dialects": [
+                                        "American English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kul"
+                                }
+                            ],
+                            "senses": [
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.006"
+                                        },
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.010"
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.005",
+                                    "registers": [
+                                        {
+                                            "id": "literal",
+                                            "text": "Literal"
+                                        }
+                                    ],
+                                    "translations": [
+                                        {
+                                            "language": "ru",
+                                            "text": "прохла́дный"
+                                        },
+                                        {
+                                            "language": "ru",
+                                            "text": "све́жий"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.015"
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.006",
+                                    "notes": [
+                                        {
+                                            "text": "unexcited",
+                                            "type": "indicator"
+                                        }
+                                    ],
+                                    "translations": [
+                                        {
+                                            "language": "ru",
+                                            "text": "хладнокро́вный"
+                                        },
+                                        {
+                                            "language": "ru",
+                                            "text": "невозмути́мый"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.014"
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.007",
+                                    "notes": [
+                                        {
+                                            "text": "impudent",
+                                            "type": "indicator"
+                                        }
+                                    ],
+                                    "translations": [
+                                        {
+                                            "language": "ru",
+                                            "text": "на́глый"
+                                        },
+                                        {
+                                            "language": "ru",
+                                            "text": "беззасте́нчивый"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.014"
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "text": "they gave him a cool reception",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "они́ его́ встре́тили с холодко́м"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.008",
+                                    "notes": [
+                                        {
+                                            "text": "unenthusiastic",
+                                            "type": "indicator"
+                                        }
+                                    ],
+                                    "translations": [
+                                        {
+                                            "language": "ru",
+                                            "text": "прохла́дный"
+                                        },
+                                        {
+                                            "language": "ru",
+                                            "text": "холо́дный"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "language": "en",
+                    "lexicalCategory": {
+                        "id": "adjective",
+                        "text": "Adjective"
+                    },
+                    "text": "cool"
+                },
+                {
+                    "entries": [
+                        {
+                            "grammaticalFeatures": [
+                                {
+                                    "id": "transitive",
+                                    "text": "Transitive",
+                                    "type": "Subcategorization"
+                                }
+                            ],
+                            "pronunciations": [
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_gb_1.mp3",
+                                    "dialects": [
+                                        "British English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kuːl"
+                                },
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_us_1.mp3",
+                                    "dialects": [
+                                        "American English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kul"
+                                }
+                            ],
+                            "senses": [
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.036"
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "text": "rain cooled the air",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "по́сле дождя́ ста́ло прохла́дно"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.010",
+                                    "translations": [
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "охлажда́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "охлади́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "остужа́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "остуди́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "освежа́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "освежи́ть"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "grammaticalFeatures": [
+                                {
+                                    "id": "intransitive",
+                                    "text": "Intransitive",
+                                    "type": "Subcategorization"
+                                }
+                            ],
+                            "pronunciations": [
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_gb_1.mp3",
+                                    "dialects": [
+                                        "British English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kuːl"
+                                },
+                                {
+                                    "audioFile": "https://audio.oxforddictionaries.com/en/mp3/cool_us_1.mp3",
+                                    "dialects": [
+                                        "American English"
+                                    ],
+                                    "phoneticNotation": "IPA",
+                                    "phoneticSpelling": "kul"
+                                }
+                            ],
+                            "senses": [
+                                {
+                                    "datasetCrossLinks": [
+                                        {
+                                            "entry_id": "cool",
+                                            "language": "en-gb",
+                                            "sense_id": "m_en_gbus0217390.042"
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "text": "his anger cooled",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "его́ гнев осты́л"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "text": "cool down, off",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "остыва́ть"
+                                                },
+                                                {
+                                                    "language": "ru",
+                                                    "text": "осты́ть"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "text": "cooling-off period",
+                                            "translations": [
+                                                {
+                                                    "language": "ru",
+                                                    "text": "пери́од обду́мывания"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b-en-ru0005657.012",
+                                    "translations": [
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "охлажда́ться"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "охлади́ться"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "освежа́ться"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "освежи́ться"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "imperfective",
+                                                    "text": "Imperfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "остыва́ть"
+                                        },
+                                        {
+                                            "grammaticalFeatures": [
+                                                {
+                                                    "id": "perfective",
+                                                    "text": "Perfective",
+                                                    "type": "Aspect"
+                                                }
+                                            ],
+                                            "language": "ru",
+                                            "text": "осты́ть"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "language": "en",
+                    "lexicalCategory": {
+                        "id": "verb",
+                        "text": "Verb"
+                    },
+                    "text": "cool"
+                }
+            ],
+            "type": "headword",
+            "word": "cool"
+        }
+    ],
+    "word": "cool"
+}

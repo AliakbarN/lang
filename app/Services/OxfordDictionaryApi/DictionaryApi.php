@@ -2,58 +2,132 @@
 
 namespace App\Services\OxfordDictionaryApi;
 
-use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Client;
 
 final class DictionaryApi
 {
-    protected static string $URL = OXFORDAPI_BASE_URL;
+    /**
+     * @var string
+     */
+    public static string $URL = 'https://od-api.oxforddictionaries.com/api/v2/';//OXFORDAPI_BASE_URL;
+    /**
+     * @var array
+     */
+    public array $words;
+    /**
+     * @var string
+     */
+    protected string $sLang;
+    /**
+     * @var Client
+     */
+    protected Client $gz;
+    /**
+     * @var ResponseParser
+     */
+    protected ResponseParser $parser;
 
     protected static array $uriAliases = [
-        'trns' => '/translations/en/ru/',
-        'syn' => '/thesaurus/en/'
+        'trns' => 'translations/en/ru/',
+        'syn' => 'thesaurus/en/',
+        'ent' => 'entries/%sLang%/'
     ];
 
-    public static function getTranslation(array $words, string $tLang = 'ru') :array
+    public static array $defaultApiHeaders = [
+        'app_key' => OXFORDAPI_KEY,
+        'app_id' => OXFORDAPI_ID
+    ];
+
+    public function __construct(string $words, Client $gz, ResponseParser $responseParser, string $sLang = 'en')
     {
-        $gz = new Guzzle(['base_uri' => self::$URL]);
-        $res = [];
+        $this->sLang = $sLang;
+        $this->words = $this->parseWords($words);
+        $this->gz = $gz;
+        $this->parser = $responseParser;
 
-        if ($tLang !== 'ru') {
-            self::$uriAliases['trns'] = strtr(self::$uriAliases['trns'], ['en' => 'ru', 'ru' => 'en']);
-        }
-
-        foreach($words as $word)
-        {
-            $res[] = $gz->get(self::$uriAliases['trns'] . $word, [
-                'headers' => [
-                    'app_key' => env('OXFORDAPI_KEY'),
-                    'app_id' => env('OXFORDAPI_ID')
-                ]
-            ]);
-        }
-
-        return $res;
+        // $this->setLang();
     }
 
-    public static function getSynonyms(array $words, string $lang = 'en') :array
+    protected function parseWords(string $words) :array
     {
-        $gz = new Guzzle(['base_uri' => self::$URL]);
+        return explode(' ', $words);
+    }
+
+    protected function setLang(string|null $aliasKey = null) :void
+    {
+        if ($aliasKey !== null) {
+            self::$uriAliases[$aliasKey] = str_replace('%sLang%', $this->sLang, self::$uriAliases[$aliasKey]);
+
+            if (str_contains($aliasKey, '%tLang%')) {
+                if ($this->sLang === 'en') {
+                    self::$uriAliases[$aliasKey] = str_replace('%tLang%', 'ru', self::$uriAliases[$aliasKey]);
+                } else {
+                    self::$uriAliases[$aliasKey] = str_replace('%tLang%', 'en', self::$uriAliases[$aliasKey]);
+                }
+            }
+        } else {
+            foreach (self::$uriAliases as $key => $alias)
+            {
+                self::$uriAliases[$key] = str_replace('%sLang%', replace: $this->sLang, subject: $alias);
+
+                if (str_contains($alias, '%tLang%')) {
+                    if ($this->sLang === 'en') {
+                        self::$uriAliases[$key] = str_replace('%tLang%', 'ru', $alias);
+                    } else {
+                        self::$uriAliases[$key] = str_replace('%tLang%', 'en', $alias);
+                    }
+                }
+            }
+        }
+    }
+
+    public function getTranslation(string $sLang = 'en') : array
+    {
         $res = [];
 
-        if ($lang !== 'en') {
-            self::$uriAliases['syn'] = str_replace('en', 'ru', self::$uriAliases['syn']);
-        }
+//        if ($sLang !== 'en') {
+//            $this->sLang = $sLang;
+//            $this->setLang('trns');
+//        }
 
-        foreach($words as $word)
+        foreach($this->words as $word)
         {
-            $res[] = $gz->get(self::$uriAliases['syn'] . $word, [
-                'headers' => [
-                    'app_key' => env('OXFORDAPI_KEY'),
-                    'app_id' => env('OXFORDAPI_ID')
-                ]
-            ]);
+            $res[] = $this->gz->get(self::$uriAliases['trns'] . $word);
         }
 
-        return $res;
+        $parsedRes = [];
+
+        foreach ($res as $response)
+        {
+            $this->parser->setResponse(json_decode($response->getBody()->getContents(), true));
+            $parsedRes[] = $this->parser->getTranslations();
+        }
+
+        return $parsedRes;
+    }
+
+    public function getSynonyms(string $sLang = 'en') :array
+    {
+        $res = [];
+
+//        if ($sLang !== 'en') {
+//            $this->sLang = $sLang;
+//            $this->setLang('syn');
+//        }
+
+        foreach($this->words as $word)
+        {
+            $res[] = $this->gz->get(self::$uriAliases['syn'] . $word);
+        }
+
+        $parsedRes = [];
+
+        foreach ($res as $response)
+        {
+            $this->parser->setResponse(json_decode($response->getBody()->getContents(), true));
+            $parsedRes[] = $this->parser->getSynonyms();
+        }
+
+        return $parsedRes;
     }
 }

@@ -3,40 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\EngWord;
-use GuzzleHttp\Psr7\Response;
+use App\Services\OxfordDictionaryApi\DictionaryApi;
+use App\Services\OxfordDictionaryApi\ResponseParser;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EngWordController// extends Controller
 {
     /**
+     * @var DictionaryApi
+     */
+    protected DictionaryApi $dictionaryApi;
+
+    protected array $defaultResponseHeaders = [
+        'Content-Type' => 'application/json'
+    ];
+
+    /**
+     * @param Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->dictionaryApi = new DictionaryApi($request->get('words'), new Client(['base_uri' => DictionaryApi::$URL, 'headers' => DictionaryApi::$defaultApiHeaders]), new ResponseParser(), $request->get('sLang'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index() :Response
     {
         $words = EngWord::all();
-        return new Response(200, [], json_encode($words));
+        return new Response($words->all(), 200, $this->defaultResponseHeaders);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request) :Response
     {
-        return new Response();
+        $sLang = $request->get('lang');
+
+        $translations = $this->dictionaryApi->getTranslation($sLang);
+        $synonyms = $this->dictionaryApi->getSynonyms($sLang);
+
+        return new Response('Ok', 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\EngWord  $engWord
-     * @return \Illuminate\Http\Response
+     * @param EngWord $engWord
+     * @return Response
      */
-    public function show(EngWord $engWord)
+    public function show(EngWord $engWord) :Response
     {
         //
     }
@@ -44,11 +69,11 @@ class EngWordController// extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EngWord  $engWord
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param EngWord $engWord
+     * @return Response
      */
-    public function update(Request $request, EngWord $engWord)
+    public function update(Request $request, EngWord $engWord) :Response
     {
         //
     }
@@ -56,10 +81,10 @@ class EngWordController// extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EngWord  $engWord
-     * @return \Illuminate\Http\Response
+     * @param EngWord $engWord
+     * @return Response
      */
-    public function destroy(EngWord $engWord)
+    public function destroy(EngWord $engWord) :Response
     {
         //
     }

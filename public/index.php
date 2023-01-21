@@ -4,7 +4,10 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
-define('OXFORDAPI_BASE_URL', env('OXFORDAPI_BASE_URL'));
+define('OXFORDAPI_BASE_URL', 'https://od-api.oxforddictionaries.com/api/v2');
+define('SPELLERAPI_BASE_URL', 'https://speller.yandex.net/services/spellservice.json');
+define('OXFORDAPI_KEY', '86f6725f85152db1204360c94890d5c6');
+define('OXFORDAPI_ID', 'e054b327');
 
 /*
 |--------------------------------------------------------------------------
