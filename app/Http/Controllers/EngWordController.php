@@ -3,29 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\EngWord;
-use App\Services\OxfordDictionaryApi\DictionaryApi;
-use App\Services\OxfordDictionaryApi\ResponseParser;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class EngWordController// extends Controller
+class EngWordController extends Controller
 {
-    /**
-     * @var DictionaryApi
-     */
-    protected DictionaryApi $dictionaryApi;
-
-    protected array $defaultResponseHeaders = [
-        'Content-Type' => 'application/json'
-    ];
-
-    /**
-     * @param Request $request
-     */
     public function __construct(Request $request)
     {
-        $this->dictionaryApi = new DictionaryApi($request->get('words'), new Client(['base_uri' => DictionaryApi::$URL, 'headers' => DictionaryApi::$defaultApiHeaders]), new ResponseParser(), $request->get('sLang'));
+        parent::__construct($request);
     }
 
     /**
@@ -63,7 +48,7 @@ class EngWordController// extends Controller
      */
     public function show(EngWord $engWord) :Response
     {
-        //
+        return new Response();
     }
 
     /**
@@ -75,7 +60,7 @@ class EngWordController// extends Controller
      */
     public function update(Request $request, EngWord $engWord) :Response
     {
-        //
+        return new Response();
     }
 
     /**
@@ -86,6 +71,6 @@ class EngWordController// extends Controller
      */
     public function destroy(EngWord $engWord) :Response
     {
-        //
+        return new Response();
     }
 }

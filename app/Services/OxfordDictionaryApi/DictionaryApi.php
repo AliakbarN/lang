@@ -3,6 +3,7 @@
 namespace App\Services\OxfordDictionaryApi;
 
 use GuzzleHttp\Client;
+use App\Services\OxfordDictionaryApi\ResponseParser;
 
 final class DictionaryApi
 {
@@ -38,12 +39,12 @@ final class DictionaryApi
         'app_id' => OXFORDAPI_ID
     ];
 
-    public function __construct(string $words, Client $gz, ResponseParser $responseParser, string $sLang = 'en')
+    public function __construct(string $words, Client $gz, string $sLang = 'en')
     {
         $this->sLang = $sLang;
         $this->words = $this->parseWords($words);
         $this->gz = $gz;
-        $this->parser = $responseParser;
+        $this->parser = new ResponseParser();
 
         // $this->setLang();
     }

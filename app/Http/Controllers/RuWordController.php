@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\RuWord;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RuWordController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+    }
+
     /**
      * Display a listing of the resource.
      *
