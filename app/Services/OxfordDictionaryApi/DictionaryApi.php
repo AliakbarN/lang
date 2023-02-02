@@ -28,7 +28,7 @@ final class DictionaryApi
      */
     protected ResponseParser $parser;
 
-    protected static array $uriAliases = [
+    protected array $uriAliases = [
         'trns' => 'translations/en/ru/',
         'syn' => 'thesaurus/en/',
         'ent' => 'entries/%sLang%/'
@@ -46,7 +46,7 @@ final class DictionaryApi
         $this->gz = $gz;
         $this->parser = new ResponseParser();
 
-        // $this->setLang();
+        $this->setLang();
     }
 
     protected function parseWords(string $words) :array
@@ -54,28 +54,28 @@ final class DictionaryApi
         return explode(' ', $words);
     }
 
-    protected function setLang(string|null $aliasKey = null) :void
+    protected function setLang(string $aliasKey = null) :void
     {
         if ($aliasKey !== null) {
-            self::$uriAliases[$aliasKey] = str_replace('%sLang%', $this->sLang, self::$uriAliases[$aliasKey]);
+            $this->uriAliases[$aliasKey] = str_replace('%sLang%', $this->sLang, $this->uriAliases[$aliasKey]);
 
-            if (str_contains($aliasKey, '%tLang%')) {
-                if ($this->sLang === 'en') {
-                    self::$uriAliases[$aliasKey] = str_replace('%tLang%', 'ru', self::$uriAliases[$aliasKey]);
-                } else {
-                    self::$uriAliases[$aliasKey] = str_replace('%tLang%', 'en', self::$uriAliases[$aliasKey]);
+            if (str_contains($this->uriAliases[$aliasKey], '%tLang%')) {
+                if ($this->sLang === 'ru') {
+                    $this->uriAliases[$aliasKey] = str_replace('%tLang%', 'en', $this->uriAliases[$aliasKey]);
+                } else if ($this->sLang === 'en') {
+                    $this->uriAliases[$aliasKey] = str_replace('%sLang%', 'ru', $this->uriAliases[$aliasKey]);
                 }
             }
         } else {
-            foreach (self::$uriAliases as $key => $alias)
+            foreach($this->uriAliases as $key => $aliase)
             {
-                self::$uriAliases[$key] = str_replace('%sLang%', replace: $this->sLang, subject: $alias);
+                $this->uriAliases[$key] = str_replace('%sLang%', $this->sLang, $aliase);
 
-                if (str_contains($alias, '%tLang%')) {
-                    if ($this->sLang === 'en') {
-                        self::$uriAliases[$key] = str_replace('%tLang%', 'ru', $alias);
-                    } else {
-                        self::$uriAliases[$key] = str_replace('%tLang%', 'en', $alias);
+                if (str_contains($this->uriAliases[$aliase], '%tLang%')) {
+                    if ($this->sLang === 'ru') {
+                        $this->uriAliases[$key] = str_replace('%tLang%', 'en', $aliase);
+                    } else if ($this->sLang === 'en') {
+                        $this->uriAliases[$key] = str_replace('%sLang%', 'ru', $aliase);
                     }
                 }
             }
@@ -86,10 +86,10 @@ final class DictionaryApi
     {
         $res = [];
 
-//        if ($sLang !== 'en') {
-//            $this->sLang = $sLang;
-//            $this->setLang('trns');
-//        }
+       if ($sLang !== 'en') {
+           $this->sLang = $sLang;
+           $this->setLang('trns');
+       }
 
         foreach($this->words as $word)
         {
@@ -111,10 +111,10 @@ final class DictionaryApi
     {
         $res = [];
 
-//        if ($sLang !== 'en') {
-//            $this->sLang = $sLang;
-//            $this->setLang('syn');
-//        }
+       if ($sLang !== 'en') {
+           $this->sLang = $sLang;
+           $this->setLang('syn');
+       }
 
         foreach($this->words as $word)
         {
@@ -130,5 +130,10 @@ final class DictionaryApi
         }
 
         return $parsedRes;
+    }
+
+    public function getEntries(string $sLang = 'en') :array
+    {
+        return [];
     }
 }

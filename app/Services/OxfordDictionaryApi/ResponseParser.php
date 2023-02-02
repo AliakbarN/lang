@@ -22,6 +22,8 @@ class ResponseParser
     {
         $res = [];
 
+        $res['word'] = $this->response['word'];
+
         foreach($this->response['results'][0]['lexicalEntries'] as $lexicalEntry)
         {
             $type = $lexicalEntry['lexicalCategory']['id'];
@@ -96,6 +98,8 @@ class ResponseParser
     public function getSynonyms() :array
     {
         $res = [];
+
+        $res['word'] = $this->response['word'];
 
         foreach($this->response['results'][0]['lexicalEntries'] as $lexicalEntry)
         {

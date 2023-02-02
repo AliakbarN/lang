@@ -9,10 +9,10 @@ class RuWord extends Model
 {
     use HasFactory;
 
-    protected $table = 'ru_word';
-    protected $fillable = ['word', 'trns'];
+    protected $table = 'ru';
+    protected $fillable = ['word', 'audio', 'spelling'];
 
-    public function engWords() :\Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function eng() :\Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(EngWord::class);
     }

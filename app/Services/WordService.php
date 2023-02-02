@@ -4,16 +4,15 @@ namespace App\Services;
 
 use App\Models\EngWord;
 use App\Models\RuWord;
-use App\Services\OxfordDictionaryApi\DictionaryApi;
 
 final class WordService
 {
-    protected DictionaryApi $dictionaryApi;
     protected EngWord|RuWord $model;
+    protected array $words;
 
-    public function __construct(DictionaryApi $dictionaryApi)
+    public function __construct(array $words)
     {
-        $this->dictionaryApi = $dictionaryApi;
+        $this->words = $words;
     }
 
     public function setModel(RuWord|EngWord $model) :void
@@ -21,8 +20,13 @@ final class WordService
         $this->model = $model;
     }
 
-    public function save() :void
+    public function save(string $word = null, array $translations = null, array $synonyms = null) :void
     {
-        
+         
+    }
+
+    public function saveOneWord(string $word, array $translation) :void
+    {
+
     }
 }

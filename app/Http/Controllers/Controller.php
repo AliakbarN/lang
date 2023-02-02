@@ -31,7 +31,7 @@ class Controller extends BaseController
      */
     public function __construct(Request $request)
     {
-        $this->dictionaryApi = new DictionaryApi($request->get('words'), new Client(['base_uri' => DictionaryApi::$URL, 'headers' => DictionaryApi::$defaultApiHeaders]), $request->get('sLang'));
-        $this->wordService = new WordService($this->dictionaryApi);
+        $this->dictionaryApi = new DictionaryApi($request->get('words'), new Client(['base_uri' => DictionaryApi::$URL, 'headers' => DictionaryApi::$defaultApiHeaders]), $request->get('lang'));
+        // $this->wordService = new WordService($this->dictionaryApi);
     }
 }

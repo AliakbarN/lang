@@ -37,7 +37,7 @@ class EngWordController extends Controller
         $translations = $this->dictionaryApi->getTranslation($sLang);
         $synonyms = $this->dictionaryApi->getSynonyms($sLang);
 
-        return new Response('Ok', 200);
+        return new Response(json_encode(['translations' => $translations, 'synonyms' => $synonyms]), 200, $this->defaultResponseHeaders);
     }
 
     /**
