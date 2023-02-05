@@ -15,23 +15,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**
-     * @var DictionaryApi
-     */
-    protected DictionaryApi $dictionaryApi;
-
-    protected WordService $wordService;
-
     protected array $defaultResponseHeaders = [
         'Content-Type' => 'application/json'
     ];
-
-    /**
-     * @param Request $request
-     */
-    public function __construct(Request $request)
-    {
-        $this->dictionaryApi = new DictionaryApi($request->get('words'), new Client(['base_uri' => DictionaryApi::$URL, 'headers' => DictionaryApi::$defaultApiHeaders]), $request->get('lang'));
-        // $this->wordService = new WordService($this->dictionaryApi);
-    }
 }

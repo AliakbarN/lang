@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\RuWordController;
-use App\Http\Controllers\EngWordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('ru')->group(function ()
 {
-    Route::apiResource('words', RuWordController::class);
+    Route::apiResource('words', WordController::class);
 });
 
 Route::prefix('en')->group(function ()
 {
-    Route::apiResource('words', EngWordController::class);
+    Route::apiResource('words', WordController::class);
 });
