@@ -16,18 +16,36 @@ final class WordService
         $this->userId = $userId;
     }
 
-    public function save(string $lang) :UserWord
+    public function save(string $lang = 'en') :UserWord
     {
         $updatedUserWord = $this->addWords($lang);
 
         return $updatedUserWord;
     }
 
+    public function update(array $wordsId, string $lang = 'en') :bool
+    {
+        if (count($this->words) !== count($wordsId)) {
+            return false;
+        }
+
+        $words = $this->getWords();
+
+        for ($i = 0; $i < count($wordsId); $i++) { 
+            $words[$lang][$wordsId[$i]] = $this->words[$i];
+        }
+
+
+
+        return true;
+    }
+
     public function addWords(string $lang) :UserWord
     {
-        $user = User::find($this->userId);
-        $userRuWords = $user->userWord()->ru;
-        $userEngWords = $user->userWord()->eng;
+        $words = $this->getWords();
+        $user = $words['user'];
+        $userRuWords = $words['ru'];
+        $userEngWords = $words['eng'];
 
         switch($lang)
         {
@@ -41,8 +59,22 @@ final class WordService
 
         $userWord = new UserWord(['ru' => $userRuWords, 'eng' => $userEngWords]);
 
-        $user->userWord()->save($userWord);
+        $user->userWord()->save();
 
         return $userWord;
-    } 
+    }
+
+    public function getWords() :array
+    {
+        $user = User::find($this->userId);
+
+        return ['ru' => $user->userWord()->ru, 'eng' => $user->userWord()->eng, 'user' => $user];
+    }
+
+    public function saveWord($words) :void
+    {
+        $userWord = new UserWord(['ru' => $userRuWords, 'eng' => $userEngWords]);
+
+        $user->userWord()->save();
+    }
 }

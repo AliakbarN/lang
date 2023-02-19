@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WordController;
@@ -24,3 +25,5 @@ Route::prefix('en')->group(function ()
 {
     Route::apiResource('words', WordController::class);
 });
+
+Route::apiResource('users', UserController::class);
