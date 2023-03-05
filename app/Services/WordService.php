@@ -4,43 +4,18 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\UserWord;
+use Exception;
 
 final class WordService
 {
     protected array $words;
-    protected int $userId;
 
-    public function __construct(array $words, int $userId)
+    public function __construct(array $words)
     {
         $this->words = $words;
-        $this->userId = $userId;
     }
-
+    
     public function save(string $lang = 'en') :UserWord
-    {
-        $updatedUserWord = $this->addWords($lang);
-
-        return $updatedUserWord;
-    }
-
-    public function update(array $wordsId, string $lang = 'en') :bool
-    {
-        if (count($this->words) !== count($wordsId)) {
-            return false;
-        }
-
-        $words = $this->getWords();
-
-        for ($i = 0; $i < count($wordsId); $i++) { 
-            $words[$lang][$wordsId[$i]] = $this->words[$i];
-        }
-
-
-
-        return true;
-    }
-
-    public function addWords(string $lang) :UserWord
     {
         $words = $this->getWords();
         $user = $words['user'];
@@ -59,22 +34,52 @@ final class WordService
 
         $userWord = new UserWord(['ru' => $userRuWords, 'eng' => $userEngWords]);
 
-        $user->userWord()->save();
+        $isWordSaved = $user->userWord()->save($userWord);
+
+        if (!$isWordSaved) {
+            throw new Exception('Something went wrong (given word was not saved)', 505);
+        }
 
         return $userWord;
     }
 
-    public function getWords() :array
+    public function update(array $wordsId, string $lang = 'en') :void
     {
-        $user = User::find($this->userId);
+        if (count($this->words) !== count($wordsId)) {
+            throw new Exception("The given data is inncorect - the array's (new words for updating) length is not matched with array's (ids of former elements) length ", 400);
+        }
 
-        return ['ru' => $user->userWord()->ru, 'eng' => $user->userWord()->eng, 'user' => $user];
+        $words = $this->getWords();
+
+        for ($i = 0; $i < count($wordsId); $i++) { 
+            $words[$lang][$wordsId[$i]] = $this->words[$i];
+        }
+
+        $isUpdated = $words['user']->userWord()->update([$lang => $words[$lang]]);
+
+        if (!$isUpdated) {
+            throw new Exception('Something went wrong (given words were not updated)', 505);
+        }
     }
 
-    public function saveWord($words) :void
+    public function getWordById(int $id, int $userWordId, string $lang = 'en') :string
     {
-        $userWord = new UserWord(['ru' => $userRuWords, 'eng' => $userEngWords]);
+        $userWord = UserWord::find($id);
 
-        $user->userWord()->save();
+        if ($userWord === null) {
+            throw new Exception("The user's word with id = $id not found", 505);
+        }
+
+        return $userWord[$lang][$userWordId];
+    }
+
+    public function all() :array
+    {
+        return (UserWord::all())->toArray();
+    }
+
+    public function removeWord(int $id, int $userWordId, string $lang = 'en') :void
+    {
+
     }
 }

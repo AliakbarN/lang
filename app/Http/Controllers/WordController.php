@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\OxfordDictionaryApi\DictionaryApi;
 use App\Services\WordService;
+use Exception;
 use GuzzleHttp\Client;
 
 final class WordController extends Controller
@@ -33,7 +34,7 @@ final class WordController extends Controller
      */
     public function index()
     {
-        //
+        return new Response($this->wordService->all(), headers: $this->defaultResponseHeaders);
     }
 
     /**
@@ -44,9 +45,12 @@ final class WordController extends Controller
      */
     public function store(Request $request)
     {
-        $userWord = $this->wordService->save($this->lang);
-
-        return new Response($userWord, headers: $this->defaultResponseHeaders);
+        try {
+            $userWord = $this->wordService->save($this->lang);
+            return new Response($userWord, headers: $this->defaultResponseHeaders);
+        } catch(Exception $error) {
+            return new Response($error->getMessage(), $error->getCode());
+        }
     }
 
     /**
@@ -55,9 +59,14 @@ final class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        try {
+            $word = $this->wordService->getWordById($id, (int)$request->get('userWordId'), $request->get('lang'));
+            return new Response($word);
+        } catch(Exception $error) {
+            return new Response($error->getMessage(), $error->getCode());
+        }
     }
 
     /**
@@ -67,9 +76,14 @@ final class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        try {
+            $this->wordService->update($request->get('wordsId'), $request->get('lang'));
+            return new Response('The given words were updated');
+        } catch(Exception $error) {
+            return new Response($error->getMessage(), $error->getCode());
+        }
     }
 
     /**
@@ -78,7 +92,7 @@ final class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         //
     }
